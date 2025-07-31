@@ -15,8 +15,6 @@ namespace WaveSystem.SceneManagement
             // Load Prefabs and pre-warm the ObjectPool for each enemy type
 
             GameObject[] enemyPrefabsToPreWarm = Resources.LoadAll<GameObject>("Prefabs/Enemies");
-            
-            Debug.Log($"Pre-warming {enemyPrefabsToPreWarm.Length} enemy prefabs in the ObjectPool.");
 
             foreach (GameObject enemyPrefab in enemyPrefabsToPreWarm)
             {

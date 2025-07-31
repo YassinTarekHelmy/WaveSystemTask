@@ -9,6 +9,7 @@ namespace WaveSystem.Utilities
 
         private bool _isRunning;
 
+
         public event Action OnTimerStarted = delegate { };
         public event Action<float> OnTimeUpdated = delegate { };
         public event Action OnTimerPaused = delegate { };

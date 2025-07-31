@@ -24,14 +24,19 @@ namespace WaveSystem.StateMachine
 
         public override void Update()
         {
+
             if (!_isMoving && Time.time - _lastDestinationTime >= DestinationUpdateInterval && !_needsDestination)
             {
+                //add the current roaming state as a pending state in the RoamingManager
+
                 _needsDestination = true;
                 RoamingManager.Instance.FlagForDestination(this);
             }
 
             if (_isMoving && !_navMeshAgent.pathPending && _navMeshAgent.remainingDistance <= 0.5f)
             {
+                // If the agent has reached its destination, stop moving and change to IdleState
+                
                 _isMoving = false;
                 StateMachine.ChangeState(StateMachine.IdleState);
             }
@@ -50,6 +55,8 @@ namespace WaveSystem.StateMachine
 
         public void SetDestination(Vector3 destination)
         {
+            // Sets a new destination for the NavMeshAgent
+
             if (!IsValid) return;
             if (NavMesh.SamplePosition(destination, out NavMeshHit hit, 15f, NavMesh.AllAreas))
             {

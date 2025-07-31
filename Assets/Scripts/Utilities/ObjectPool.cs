@@ -10,6 +10,7 @@ namespace WaveSystem.Utilities
         public static ObjectPool Instance { get; private set; }
 
         private GameObject _poolParent;
+
         // Dictionary to store separate pools for each prefab type
         private Dictionary<GameObject, Queue<GameObject>> _objectPools = new();
         private Dictionary<GameObject, GameObject> _prefabLookup = new();
@@ -99,8 +100,9 @@ namespace WaveSystem.Utilities
             {
                 obj.SetActive(false);
                 obj.transform.SetParent(_poolParent.transform);
-                
+
                 // Return to the correct pool based on original prefab
+                
                 GameObject originalPrefab = _prefabLookup[obj];
                 _objectPools[originalPrefab].Enqueue(obj);
             }

@@ -22,6 +22,8 @@ namespace WaveSystem.StateMachine
         {
             _idleTimer.Update(Time.deltaTime);
 
+            // Check if the idle timer has finished, if so, change to RoamingState
+
             if (!_idleTimer.IsRunning)
             {
                 StateMachine.ChangeState(StateMachine.RoamingState);

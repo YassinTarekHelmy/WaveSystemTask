@@ -136,8 +136,9 @@ public class WaveSystemManager : MonoBehaviour
         // Wait for all enemies to be defeated
         _isSpawning = false;
         yield return new WaitUntil(() => _activeEnemies.Count == 0);
-        
+
         // Wave completed - trigger event and wait before next wave
+        
         OnWaveCompleted?.Invoke(_waveCount);
         yield return new WaitForSeconds(_timeBetweenWaves);
         
@@ -192,13 +193,13 @@ public class WaveSystemManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Coroutine that spawns remaining enemies and immediately starts next wave
-    /// </summary>
     private IEnumerator ForceNextWaveCoroutine()
     {
         // Spawn all remaining enemies for current wave instantly
+
+        //! Remove the next line if you want to instantly jump to the next wave without spawning remaining enemies
         SpawnRemainingEnemies();
+        //!-----------------------
         
         // Wait one frame to ensure all enemies are spawned
         yield return null;

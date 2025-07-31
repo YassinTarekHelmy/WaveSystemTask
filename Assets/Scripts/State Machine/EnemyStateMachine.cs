@@ -19,6 +19,8 @@ namespace WaveSystem.StateMachine
 
         public EnemyStateMachine(NavMeshAgent navMeshAgent, MonoBehaviour transform)
         {
+            //Initializations
+            
             _navMeshAgent = navMeshAgent;
             _enemy = transform.GetComponent<Enemy>();
             _enemyMonoBehaviour = transform;

@@ -16,19 +16,17 @@ namespace WaveSystem.StateMachine
 
         public override void Enter()
         {
+            StateMachine.Enemy.Animator.CrossFade("Run", 0.1f);
+
             RoamingManager.Instance.Register(this);
             _isMoving = false;
-            _lastDestinationTime = Time.time;
             _needsDestination = false;
         }
 
         public override void Update()
         {
-
-            if (!_isMoving && Time.time - _lastDestinationTime >= DestinationUpdateInterval && !_needsDestination)
+            if (!_isMoving && !_needsDestination)
             {
-                //add the current roaming state as a pending state in the RoamingManager
-
                 _needsDestination = true;
                 RoamingManager.Instance.FlagForDestination(this);
             }
@@ -36,7 +34,7 @@ namespace WaveSystem.StateMachine
             if (_isMoving && !_navMeshAgent.pathPending && _navMeshAgent.remainingDistance <= 0.5f)
             {
                 // If the agent has reached its destination, stop moving and change to IdleState
-                
+
                 _isMoving = false;
                 StateMachine.ChangeState(StateMachine.IdleState);
             }
@@ -62,7 +60,6 @@ namespace WaveSystem.StateMachine
             {
                 _navMeshAgent.SetDestination(hit.position);
                 _isMoving = true;
-                _lastDestinationTime = Time.time;
             }
             _needsDestination = false;
         }

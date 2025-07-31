@@ -13,7 +13,15 @@ namespace WaveSystem.Enemies
 
         private WaveSystemManager waveManager;
 
+        private Animator _animator;
+
         public EnemyData EnemyData => _enemyData;
+        public Animator Animator => _animator;
+        void Awake()
+        {
+            _animator = GetComponent<Animator>();
+        }
+
         void Start()
         {
             waveManager = FindAnyObjectByType<WaveSystemManager>();

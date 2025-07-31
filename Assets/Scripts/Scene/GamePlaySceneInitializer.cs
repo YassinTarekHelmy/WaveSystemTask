@@ -20,7 +20,7 @@ namespace WaveSystem.SceneManagement
 
             foreach (GameObject enemyPrefab in enemyPrefabsToPreWarm)
             {
-                ObjectPool.Instance.PreWarm(enemyPrefab, 150);
+                ObjectPool.Instance.PreWarm(enemyPrefab, 500);
             }
         }
     }

@@ -13,6 +13,8 @@ namespace WaveSystem.StateMachine
 
         public override void Enter()
         {
+            StateMachine.Enemy.Animator.CrossFade("Idle", 0.1f);
+            
             StateMachine.NavMeshAgent.isStopped = true;
             StateMachine.NavMeshAgent.ResetPath();
             _idleTimer.Start();
